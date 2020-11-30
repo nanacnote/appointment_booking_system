@@ -1,0 +1,13 @@
+{
+  "home": {
+    "title": "Covid-19 Testing | Home",
+    "nav": ["Home", "Team", "News"],
+    "bannerTitle": "Get Tested!",
+    "bannerSubtitle": [
+      "Book a test at your local health center.",
+      "Help flatten the curve."
+    ],
+    "bookButton": "Book An Appointment",
+    "signupButton": "Register"
+  }
+}
