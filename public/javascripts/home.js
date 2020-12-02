@@ -1,4 +1,21 @@
 /**
+ * handles form post request
+ *
+ * @param {string} params
+ */
+function postAgent(params) {
+  $.ajax({
+    type: "POST",
+    url: `/api?formId=${params}`,
+    data: $(`.${params}-form-data`).serialize(),
+    success: function () {
+      $(".form-success").children().removeClass("d-flex").addClass("d-none");
+      $($(".form-success").children().get(1)).addClass("d-flex");
+    },
+  });
+}
+
+/**
  * handles responsive nav menu open
  */
 function openNavDrawer() {
@@ -20,9 +37,11 @@ function closeNavDrawer() {
  * handles which form to display
  */
 function displayForm(params) {
+  $(".form-wrapper").removeClass("d-flex").addClass("d-none");
   switch (params) {
     case "register":
       $(".register-form").removeClass("d-none").addClass("d-flex");
+      highlightSelection(".register-form-pagination", 0);
       break;
 
     default:
@@ -31,24 +50,20 @@ function displayForm(params) {
 }
 
 /**
- * handles the form slide on next button press or pagination button pressed
- *
- * @param {string} formId
- * @param {number} index
- * @param {boolean} paginator
+ * handles feedback alert on form submission
  */
-function slideNextForm(formId, index, paginator = false) {
-  highlightSelection(".register-form-pagination", index);
-  paginator ? $(formId).carousel(index) : $(formId).carousel("next");
-  $(formId).carousel("pause");
-}
+function submitForm(event, params) {
+  event.preventDefault();
+  postAgent(params);
+  $(".form-wrapper").removeClass("d-flex").addClass("d-none");
+  switch (params) {
+    case "register":
+      $(".form-success").addClass("d-flex");
+      break;
 
-function slideNextBgImage(index) {
-  highlightSelection(".pagination", index);
-  $("body").css({
-    "background-image": "url('/images/backgrounds/bg-" + index + ".png')",
-  });
-  if (index === 3) index = 0;
+    default:
+      break;
+  }
 }
 
 /**
@@ -68,13 +83,48 @@ function highlightSelection(elementId, counter) {
   });
 }
 
-let count = 0;
+/**
+ * handles the form slide on next button press or pagination button pressed
+ *
+ * @param {string} formId
+ * @param {number} index
+ * @param {boolean} paginator
+ */
+function slideNextForm(formId, index, paginator = false) {
+  highlightSelection(".register-form-pagination", index);
+  paginator ? $(formId).carousel(index) : $(formId).carousel("next");
+  $(formId).carousel("pause");
+}
 
-$(document).ready(
-  // handles background slide show
+/**
+ * handles background image pagination selector
+ *
+ * @param {number} index
+ */
+function slideNextBgImage(index) {
+  highlightSelection(".pagination", index);
+  $("body").css({
+    "background-image": "url('/images/backgrounds/bg-" + index + ".png')",
+  });
+  if (index === 3) index = 0;
+}
+
+/**
+ * triggers background image slideshow
+ */
+function startBgSlideShow() {
+  let count = 0;
+  highlightSelection(".pagination", 2);
   setInterval(() => {
-    slideNextBgImage(count);
+    highlightSelection(".pagination", count);
+    $("body").css({
+      "background-image": "url('/images/backgrounds/bg-" + count + ".png')",
+    });
     count += 1;
     if (count === 3) count = 0;
-  }, 30000)
-);
+  }, 30000);
+}
+
+$(document).ready(() => {
+  startBgSlideShow();
+});

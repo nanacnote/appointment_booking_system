@@ -14,7 +14,7 @@ body {
   margin: 0;
   height: 100%;
   background-color: var(--main-bg-color);
-  background-image: url("/images/backgrounds/bg-0.png");
+  background-image: url("/images/backgrounds/bg-2.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -91,7 +91,7 @@ select {
 }
 
 .banner-subtitle {
-  font-size: min(max(1.5rem, 2.5vw), 3rem);
+  font-size: min(max(1.5rem, 2vw), 3rem);
 }
 
 .custom-btn-primary {

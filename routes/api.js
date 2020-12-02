@@ -1,9 +1,13 @@
 var express = require("express");
 var router = express.Router();
 
-/* GET users listing. */
 router.post("/", function (req, res, next) {
-  res.send(req.body);
+  if (req.query.formId === "register") {
+    setTimeout(() => {
+      console.log(req.body);
+      res.send(req.body);
+    }, 5000);
+  }
 });
 
 module.exports = router;
