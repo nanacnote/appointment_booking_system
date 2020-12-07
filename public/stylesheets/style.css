@@ -149,6 +149,7 @@ select {
   min-height: 500px;
   backdrop-filter: blur(20px);
   background-color: var(--complementary-color-light);
+  border: solid 2px var(--complementary-color);
 }
 
 .register-form-pagination-wrapper {

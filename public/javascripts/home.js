@@ -31,7 +31,6 @@ function toggleNavDrawer() {
  */
 function displayForm(event, params) {
   $(event.target).attr("disabled", true);
-  console.log(event.target);
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
   switch (params) {
     case "register":
