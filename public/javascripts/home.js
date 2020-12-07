@@ -1,17 +1,16 @@
 /**
  * handles form post request
  *
- * @param {string} params
+ * @param {string} formId
  */
-function postAgent(params) {
+function postAgent(formId) {
   $.ajax({
     type: "POST",
-    url: `/api?formId=${params}`,
-    data: $(`.${params}-form-data`).serialize(),
+    url: `/api?formId=${formId}`,
+    data: $(`.${formId}-form-data`).serialize(),
     success: function (data) {
-      $(".form-success").children().removeClass("d-flex").addClass("d-none");
-      $($(".form-success").children().get(1)).addClass("d-flex");
-      $(".user-name").text(data.first);
+      $(`.${formId}-form-success`).children().toggleClass("d-flex d-none");
+      $(".feedback-data").text(data.first);
     },
   });
 }
@@ -29,35 +28,25 @@ function toggleNavDrawer() {
 /**
  * handles which form to display
  */
-function displayForm(event, params) {
-  $(event.target).attr("disabled", true);
+function displayForm(formId) {
+  $(".form-button").attr("disabled", false);
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
-  switch (params) {
-    case "register":
-      $(".register-form").removeClass("d-none").addClass("d-flex");
-      highlightSelection(".register-form-pagination", 0);
-      break;
 
-    default:
-      break;
-  }
+  $(`.${formId}-form-button`).attr("disabled", true);
+  $(`.${formId}-form`).addClass("d-flex");
+
+  // add eventlistner to carousel to stop swipe and listen for what page its on to highlight
+  highlightSelection(".register-form-pagination", 0);
 }
 
 /**
  * handles feedback alert on form submission
  */
-function submitForm(event, params) {
+function submitForm(event, formId) {
   event.preventDefault();
-  postAgent(params);
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
-  switch (params) {
-    case "register":
-      $(".form-success").addClass("d-flex");
-      break;
-
-    default:
-      break;
-  }
+  $(`.${formId}-form-success`).addClass("d-flex");
+  postAgent(formId);
 }
 
 /**

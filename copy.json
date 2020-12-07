@@ -1,4 +1,44 @@
 {
+  "calendar": {
+    "month": "December",
+    "slots": {
+      "mon": {
+        "week1": { "date": ".", "availability": "null" },
+        "week2": { "date": "7", "availability": "open" },
+        "week3": { "date": "14", "availability": "full" },
+        "week4": { "date": "21", "availability": "open" },
+        "week5": { "date": "28", "availability": "open" }
+      },
+      "tue": {
+        "week1": { "date": "1", "availability": "open" },
+        "week2": { "date": "8", "availability": "open" },
+        "week3": { "date": "15", "availability": "full" },
+        "week4": { "date": "22", "availability": "open" },
+        "week5": { "date": "29", "availability": "open" }
+      },
+      "wed": {
+        "week1": { "date": "2", "availability": "full" },
+        "week2": { "date": "9", "availability": "full" },
+        "week3": { "date": "16", "availability": "full" },
+        "week4": { "date": "23", "availability": "open" },
+        "week5": { "date": "30", "availability": "full" }
+      },
+      "thu": {
+        "week1": { "date": "3", "availability": "open" },
+        "week2": { "date": "10", "availability": "open" },
+        "week3": { "date": "17", "availability": "full" },
+        "week4": { "date": "24", "availability": "full" },
+        "week5": { "date": "31", "availability": "open" }
+      },
+      "fri": {
+        "week1": { "date": "4", "availability": "open" },
+        "week2": { "date": "11", "availability": "full" },
+        "week3": { "date": "18", "availability": "full" },
+        "week4": { "date": "25", "availability": "full" },
+        "week5": { "date": ".", "availability": "null" }
+      }
+    }
+  },
   "home": {
     "title": "Covid-19 Testing | Home",
     "nav": ["Home", "Team", "News"],
@@ -7,14 +47,25 @@
       "Book a test at your local health center.",
       "Help flatten the curve."
     ],
-    "bookButton": "Book An Appointment",
-    "registerButton": "Register",
+    "features": {
+      "ft1": {
+        "id": "register",
+        "buttonLabel": "Book an appointment"
+      },
+      "ft2": {
+        "id": "book",
+        "buttonLabel": "Register"
+      }
+    },
     "prompts": {
-      "regSuccessHeader": "Registration Succesful",
-      "regSuccessAcknowledgment": "Thanks for registering",
-      "regSuccessInfo1": "Click on Book An Appointment button to book one now or come back later.",
-      "regSuccessInfo2": "Your password will be required if you choose to book later.",
-      "regError": "Failed"
+      "registerSuccessAcknowledgment": "Thanks for registering",
+      "registerSuccessInfo1": "Click on Book An Appointment button to book one now or come back later.",
+      "registerSuccessInfo2": "Your password will be required if you choose to book later.",
+      "registerError": "Failed",
+      "bookSuccessAcknowledgment": "Appointment confirmed",
+      "bookSuccessInfo1": "Please remember to follow social distancing rules when you come in for testing",
+      "bookSuccessInfo2": "If unable to attend cancel immediately to allow others to use slots.",
+      "bookError": "Failed"
     }
   }
 }

@@ -1,5 +1,6 @@
 extends layout
 
+
 block content
   .container-fluid.w-75.h-100
     .row.my-4
@@ -32,18 +33,19 @@ block content
             .container-fluid.nopadding
               .row
                 .col-12.col-lg-auto.mt-3
-                  button.btn.btn-lg.custom-btn-primary(type="button")
+                  button.btn.btn-lg.custom-btn-primary.book-form-button.form-button(type="button" onclick="displayForm('book')")
                     != fs.readFileSync("./public/images/icons/book.svg")
-                    | &nbsp; #{bookButton}
+                    | &nbsp; #{features.ft1.buttonLabel}
                 .col-12.col-lg-auto.mt-3
-                  button.btn.btn-lg.custom-btn-secondary(type="button" onclick="displayForm(event, 'register')")
+                  button.btn.btn-lg.custom-btn-secondary.register-form-button.form-button(type="button" onclick="displayForm('register')")
                     != fs.readFileSync("./public/images/icons/pen.svg")
-                    | &nbsp; #{registerButton}
+                    | &nbsp; #{features.ft2.buttonLabel}
           
       .col-12.col-lg-5.nopadding
+        //- registration form
         .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.my-4.register-form.form-wrapper
           form.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
-            .h3.text-center.mb-4 #{registerButton}
+            .h3.text-center.mb-4 #{features.ft2.buttonLabel}
             #register-form-carousel.carousel.slide
               .carousel-inner
                 //- form page 1
@@ -97,22 +99,36 @@ block content
           .register-form-pagination-wrapper
             .register-form-pagination(tabindex="0" onclick="slideNextForm('#register-form-carousel',0,true)") 1
             .register-form-pagination(tabindex="0" onclick="slideNextForm('#register-form-carousel',1,true)") 2
-
-        .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-success.form-wrapper
-          .d-flex.spinner-border(role='status')
-            span.sr-only Loading...
-          .d-none.flex-column.align-items-center.text-center
-            .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
-            .h4.pb-3
-              span.pr-2 #{prompts.regSuccessAcknowledgment}
-              span.user-name
-            div 
-              | #{prompts.regSuccessInfo1} 
-            .my-4.text-muted
-              small #{prompts.regSuccessInfo2}
         
-    .d-flex.fixed-bottom.mb-4.justify-content-center.align-items-center.pagination-wrapper
-      .pagination(onclick='slideNextBgImage(0)')
-      .pagination(onclick='slideNextBgImage(1)')
-      .pagination(onclick='slideNextBgImage(2)')
+        
+        //- bookings form 
+        .d-flex.position-relative.justify-content-center.align-items-center.rounded.p-4.my-4.book-form.form-wrapper
+          .d-block
+            .h3.text-center.mb-4 #{features.ft1.buttonLabel}
+            .d-flex.flex-column.shadow-lg.rounded.overflow-hidden.calendar-wrapper
+              .h-25.p-4.text-right.bg-primary 
+                .h4.text-white #{calendar.month}
+              .h-75.pt-2.pb-4.px-4.d-flex.bg-light
+                each val, key in calendar.slots
+                  .d-flex.flex-column.justify-content-between.text-right.w-100.h-100
+                    .text-muted.text-capitalize #{key}
+                    .calendar-date(class=`calendar-date-${val.week1.availability}`) #{val.week1.date}
+                    .calendar-date(class=`calendar-date-${val.week2.availability}`) #{val.week2.date}
+                    .calendar-date(class=`calendar-date-${val.week3.availability}`) #{val.week3.date}
+                    .calendar-date(class=`calendar-date-${val.week4.availability}`) #{val.week4.date}
+                    .calendar-date(class=`calendar-date-${val.week5.availability}`) #{val.week5.date}
+
+        //- succesful registration message
+        each val, key in features
+          .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-wrapper(class=`${val.id}-form-success`)
+            .d-flex.spinner-border(role='status')
+              span.sr-only Loading...
+            .d-none.flex-column.align-items-center.text-center
+              .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
+              .h4.pb-3
+                span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
+                span.feedback-data
+              .text-white #{prompts[`${val.id}SuccessInfo1`]} 
+              .my-4
+                small #{prompts[`${val.id}SuccessInfo2`]}
 
