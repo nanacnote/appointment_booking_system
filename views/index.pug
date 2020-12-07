@@ -8,14 +8,14 @@ block content
           a.nav-links.mr-5(href='/error') #{nav[0]}
           a.nav-links.mr-5(href='/error') #{nav[1]}
           a.nav-links(href='/error') #{nav[2]}
-        .d-flex.d-lg-none.h-100.px-4.justify-content-end.align-items-center
-          button.btn.btn-lg.custom-btn-secondary(type="button" onclick="openNavDrawer()")
+        .d-flex.d-lg-none.justify-content-end.align-items-center.nav-drawer
+          button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
             != fs.readFileSync("./public/images/icons/menu.svg")
-          .d-none.flex-column.align-items-end.fixed-top.h-100.nav-drawer
-            .m-4
-              button.btn.btn-lg.custom-btn-secondary(type="button" onclick="closeNavDrawer()")
-                != fs.readFileSync("./public/images/icons/close.svg")
-            .d-flex.flex-column.m-4.align-items-end
+        .d-none.d-lg-none.flex-column.justify-content-end.align-items-end.nav-drawer
+          button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
+              != fs.readFileSync("./public/images/icons/close.svg")
+          .d-flex.position-relative
+            .position-absolute.rounded.nav-drawer-wrapper
               a.nav-links.mb-4(href='/error') #{nav[0]}
               a.nav-links.mb-4(href='/error') #{nav[1]}
               a.nav-links.mb-4(href='/error') #{nav[2]}
@@ -36,7 +36,7 @@ block content
                     != fs.readFileSync("./public/images/icons/book.svg")
                     | &nbsp; #{bookButton}
                 .col-12.col-lg-auto.mt-3
-                  button.btn.btn-lg.custom-btn-secondary(type="button" onclick="displayForm('register')")
+                  button.btn.btn-lg.custom-btn-secondary(type="button" onclick="displayForm(event, 'register')")
                     != fs.readFileSync("./public/images/icons/pen.svg")
                     | &nbsp; #{registerButton}
           
@@ -74,7 +74,7 @@ block content
                       .col.input-field.mb-4
                         input.w-100(type="text", name="post-code" placeholder="Postcode")
                     .input-field.mb-4
-                      input.w-100(type="text", name="dob" placeholder="Date of Birth" onfocus="(this.type='date')" onblur="(this.type='text')" )
+                      input.w-100(type="date", name="dob" placeholder="Date of Birth" )
                     .form-row
                       .col.input-field.mb-4
                         select.w-100
@@ -101,7 +101,16 @@ block content
         .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-success.form-wrapper
           .d-flex.spinner-border(role='status')
             span.sr-only Loading...
-          .d-none.h3.text-center.mb-4.text-success Successful
+          .d-none.flex-column.align-items-center.text-center
+            .h3.text-success #{prompts.regSuccessHeader}
+            .divider
+            .h4.pb-3
+              span.pr-2 #{prompts.regSuccessAcknowledgment}
+              span.user-name
+            div 
+              | #{prompts.regSuccessInfo1} 
+            .my-4.text-muted
+              small #{prompts.regSuccessInfo2}
         
     .d-flex.fixed-bottom.mb-4.justify-content-center.align-items-center.pagination-wrapper
       .pagination(onclick='slideNextBgImage(0)')

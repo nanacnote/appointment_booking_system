@@ -6,7 +6,7 @@ router.post("/", function (req, res, next) {
     setTimeout(() => {
       console.log(req.body);
       res.send(req.body);
-    }, 5000);
+    }, 1000);
   }
 });
 

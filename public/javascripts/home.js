@@ -8,35 +8,30 @@ function postAgent(params) {
     type: "POST",
     url: `/api?formId=${params}`,
     data: $(`.${params}-form-data`).serialize(),
-    success: function () {
+    success: function (data) {
       $(".form-success").children().removeClass("d-flex").addClass("d-none");
       $($(".form-success").children().get(1)).addClass("d-flex");
+      $(".user-name").text(data.first);
     },
   });
 }
 
 /**
- * handles responsive nav menu open
+ * handles responsive nav menu open/close
  */
-function openNavDrawer() {
-  if ($(".nav-drawer").hasClass("d-none")) {
-    $(".nav-drawer").removeClass("d-none").addClass("d-flex");
-  }
-}
-
-/**
- * handles responsive nav menu close
- */
-function closeNavDrawer() {
-  if ($(".nav-drawer").hasClass("d-flex")) {
-    $(".nav-drawer").removeClass("d-flex").addClass("d-none");
-  }
+function toggleNavDrawer() {
+  $(".nav-drawer").toggleClass("d-none d-flex");
+  $($(".nav-drawer").first()).hasClass("d-none")
+    ? $(".nav-drawer-wrapper").slideDown()
+    : $(".nav-drawer-wrapper").slideUp();
 }
 
 /**
  * handles which form to display
  */
-function displayForm(params) {
+function displayForm(event, params) {
+  $(event.target).attr("disabled", true);
+  console.log(event.target);
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
   switch (params) {
     case "register":

@@ -5,6 +5,17 @@
   --complementary-color: #00008b;
   --complementary-color-light: rgba(0, 0, 139, 0.25);
 }
+
+::placeholder {
+  color: var(--main-bg-color);
+}
+:-ms-input-placeholder {
+  color: var(--main-bg-color);
+}
+::-ms-input-placeholder {
+  color: var(--main-bg-color);
+}
+
 html {
   height: 100%;
 }
@@ -40,10 +51,18 @@ a:hover {
 
 input,
 select {
+  color: var(--main-bg-color);
   border: solid 1px var(--complementary-color);
   border-radius: 2.5px;
   padding: 0.5rem 0.25rem;
   background-color: transparent;
+}
+
+.divider {
+  width: 75%;
+  height: 2px;
+  margin: 2rem 0;
+  background: var(--complementary-color);
 }
 
 .form-btn input {
@@ -53,9 +72,18 @@ select {
   color: var(--complementary-color);
 }
 
-.nav-drawer {
-  background-color: var(--main-bg-color);
-  left: 50%;
+.nav-drawer-wrapper {
+  display: none;
+  right: 0;
+  margin-top: 1rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(5px);
+  border: solid 2px var(--complementary-color);
+  background-color: var(--complementary-color-light);
+  z-index: 10;
+}
+.nav-drawer-wrapper a {
+  color: var(--main-bg-color);
 }
 
 .nav-links {
@@ -95,6 +123,7 @@ select {
 }
 
 .custom-btn-primary {
+  backdrop-filter: blur(5px);
   background-color: var(--complementary-color-light);
   border: solid 2px var(--complementary-color);
   color: var(--main-bg-color);
@@ -116,8 +145,10 @@ select {
 }
 
 .form-wrapper {
+  color: var(--main-bg-color);
   min-height: 500px;
-  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  background-color: var(--complementary-color-light);
 }
 
 .register-form-pagination-wrapper {

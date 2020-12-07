@@ -8,6 +8,13 @@
       "Help flatten the curve."
     ],
     "bookButton": "Book An Appointment",
-    "registerButton": "Register"
+    "registerButton": "Register",
+    "prompts": {
+      "regSuccessHeader": "Registration Succesful",
+      "regSuccessAcknowledgment": "Thanks for registering",
+      "regSuccessInfo1": "Click on Book An Appointment button to book one now or come back later.",
+      "regSuccessInfo2": "Your password will be required if you choose to book later.",
+      "regError": "Failed"
+    }
   }
 }
