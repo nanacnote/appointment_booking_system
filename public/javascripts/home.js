@@ -10,7 +10,7 @@ function postAgent(formId) {
     data: $(`.${formId}-form-data`).serialize(),
     success: function (data) {
       $(`.${formId}-form-success`).children().toggleClass("d-flex d-none");
-      $(".feedback-data").text(data.first);
+      $(".feedback-data").text(data.first || data.timeSlot);
     },
   });
 }
@@ -27,6 +27,8 @@ function toggleNavDrawer() {
 
 /**
  * handles which form to display
+ *
+ * @param {string} formId
  */
 function displayForm(formId) {
   $(".form-button").attr("disabled", false);
@@ -41,12 +43,44 @@ function displayForm(formId) {
 
 /**
  * handles feedback alert on form submission
+ *
+ * @param {string} elementId
+ * @param {string} formId
  */
 function submitForm(event, formId) {
   event.preventDefault();
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
   $(`.${formId}-form-success`).addClass("d-flex");
   postAgent(formId);
+}
+
+/**
+ * handles appointment date selection
+ */
+function selectDate() {
+  $(".calendar-date-open").on("click", function () {
+    $(".calendar-time").slideDown();
+
+    const children = $(".time-slot-input");
+
+    const date = $(this).text();
+    const month = $(this).data("month");
+    const time = Object.values($(this).data("time"));
+
+    children.each(function () {
+      $(this)
+        .find("input")
+        .val(`${date} ${month.month} ${time[children.index(this)]}`);
+      $(this).find("label").text(time[children.index(this)]);
+    });
+  });
+}
+
+/**
+ * cancels appointment date selection
+ */
+function cancelBooking() {
+  $(".calendar-time").slideUp();
 }
 
 /**
@@ -80,15 +114,23 @@ function slideNextForm(formId, index, paginator = false) {
 }
 
 /**
+ * handles home slideshow css styling
+ * @param {number} index
+ */
+function bgSlideShowCss(index) {
+  $("#home").css({
+    "background-image": "url('/images/backgrounds/bg-" + index + ".png')",
+  });
+}
+
+/**
  * handles background image pagination selector
  *
  * @param {number} index
  */
 function slideNextBgImage(index) {
   highlightSelection(".pagination", index);
-  $("body").css({
-    "background-image": "url('/images/backgrounds/bg-" + index + ".png')",
-  });
+  bgSlideShowCss(index);
   if (index === 3) index = 0;
 }
 
@@ -96,18 +138,17 @@ function slideNextBgImage(index) {
  * triggers background image slideshow
  */
 function startBgSlideShow() {
-  let count = 0;
+  let index = 0;
   highlightSelection(".pagination", 2);
   setInterval(() => {
-    highlightSelection(".pagination", count);
-    $("body").css({
-      "background-image": "url('/images/backgrounds/bg-" + count + ".png')",
-    });
-    count += 1;
-    if (count === 3) count = 0;
+    highlightSelection(".pagination", index);
+    bgSlideShowCss(index);
+    index += 1;
+    if (index === 3) index = 0;
   }, 30000);
 }
 
 $(document).ready(() => {
   startBgSlideShow();
+  selectDate();
 });

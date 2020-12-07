@@ -1,0 +1,34 @@
+{
+  "home": {
+    "title": "Covid-19 Testing | Home",
+    "nav": ["Home", "Team", "News"],
+    "bannerTitle": "Get Tested!",
+    "bannerSubtitle": [
+      "Book a test at your local health center.",
+      "Help flatten the curve."
+    ],
+    "features": {
+      "ft1": {
+        "id": "register",
+        "buttonLabel": "Book an appointment"
+      },
+      "ft2": {
+        "id": "book",
+        "buttonLabel": "Register"
+      }
+    },
+    "tips": {
+      "bookTimeSelection": "Please select a time slot:"
+    },
+    "prompts": {
+      "registerSuccessAcknowledgment": "Thanks for registering",
+      "registerSuccessInfo1": "Click on Book An Appointment button to book one now or come back later.",
+      "registerSuccessInfo2": "Your password will be required if you choose to book later.",
+      "registerError": "Failed",
+      "bookSuccessAcknowledgment": "Appointment confirmed",
+      "bookSuccessInfo1": "Please remember to follow social distancing rules when you come in for testing",
+      "bookSuccessInfo2": "If unable to attend cancel immediately to allow others to use slots.",
+      "bookError": "Failed"
+    }
+  }
+}

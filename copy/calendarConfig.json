@@ -1,0 +1,148 @@
+{
+  "month": "December",
+  "dates": {
+    "mon": {
+      "week1": { "date": ".", "availability": "null", "timeSlots": {} },
+      "week2": {
+        "date": "7",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:00",
+          "s2": "11:00",
+          "s3": "11:45",
+          "s4": "15:00"
+        }
+      },
+      "week3": { "date": "14", "availability": "full", "timeSlots": {} },
+      "week4": {
+        "date": "21",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "08:00",
+          "s2": "09:30",
+          "s3": "12:45",
+          "s4": "13:15"
+        }
+      },
+      "week5": {
+        "date": "28",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "08:30",
+          "s2": "10:30",
+          "s3": "16:15",
+          "s4": "16:30"
+        }
+      }
+    },
+    "tue": {
+      "week1": {
+        "date": "1",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "09:00",
+          "s2": "10:00",
+          "s3": "11:00",
+          "s4": "13:00"
+        }
+      },
+      "week2": {
+        "date": "8",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:30",
+          "s2": "12:45",
+          "s3": "14:15",
+          "s4": "14:45"
+        }
+      },
+      "week3": { "date": "15", "availability": "full", "timeSlots": {} },
+      "week4": {
+        "date": "22",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:15",
+          "s2": "12:15",
+          "s3": "13:00",
+          "s4": "14:30"
+        }
+      },
+      "week5": {
+        "date": "29",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:30",
+          "s2": "13:00",
+          "s3": "14:15",
+          "s4": "15:00"
+        }
+      }
+    },
+    "wed": {
+      "week1": { "date": "2", "availability": "full", "timeSlots": {} },
+      "week2": { "date": "9", "availability": "full", "timeSlots": {} },
+      "week3": { "date": "16", "availability": "full", "timeSlots": {} },
+      "week4": {
+        "date": "23",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:00",
+          "s2": "12:30",
+          "s3": "13:00",
+          "s4": "13:30"
+        }
+      },
+      "week5": { "date": "30", "availability": "full", "timeSlots": {} }
+    },
+    "thu": {
+      "week1": {
+        "date": "3",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:15",
+          "s2": "12:00",
+          "s3": "14:30",
+          "s4": "15:00"
+        }
+      },
+      "week2": {
+        "date": "10",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "12:00",
+          "s2": "12:15",
+          "s3": "14:30",
+          "s4": "15:15"
+        }
+      },
+      "week3": { "date": "17", "availability": "full", "timeSlots": {} },
+      "week4": { "date": "24", "availability": "full", "timeSlots": {} },
+      "week5": {
+        "date": "31",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "10:15",
+          "s2": "12:00",
+          "s3": "12:30",
+          "s4": "15:00"
+        }
+      }
+    },
+    "fri": {
+      "week1": {
+        "date": "4",
+        "availability": "open",
+        "timeSlots": {
+          "s1": "09:00",
+          "s2": "14:00",
+          "s3": "15:00",
+          "s4": "15:30"
+        }
+      },
+      "week2": { "date": "11", "availability": "full", "timeSlots": {} },
+      "week3": { "date": "18", "availability": "full", "timeSlots": {} },
+      "week4": { "date": "25", "availability": "full", "timeSlots": {} },
+      "week5": { "date": ".", "availability": "null", "timeSlots": {} }
+    }
+  }
+}

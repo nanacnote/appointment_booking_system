@@ -1,19 +1,20 @@
 /* declares global variables */
 :root {
   --main-bg-color: #d3d3d3;
-  --main-text-color: #000;
+  --dark-text: #000;
+  --light-text: #fff;
   --complementary-color: #00008b;
   --complementary-color-light: rgba(0, 0, 139, 0.25);
 }
 
 ::placeholder {
-  color: var(--main-bg-color);
+  color: var(--light-text);
 }
 :-ms-input-placeholder {
-  color: var(--main-bg-color);
+  color: var(--light-text);
 }
 ::-ms-input-placeholder {
-  color: var(--main-bg-color);
+  color: var(--light-text);
 }
 
 html {
@@ -25,13 +26,8 @@ body {
   margin: 0;
   height: 100%;
   background-color: var(--main-bg-color);
-  background-image: url("/images/backgrounds/bg-2.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: var(--main-text-color);
+  color: var(--dark-text);
 }
 
 .nopadding {
@@ -40,22 +36,32 @@ body {
 }
 
 a {
-  color: var(--main-text-color);
+  color: var(--dark-text);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--main-text-color);
+  color: var(--dark-text);
   text-decoration: none;
 }
 
 input,
 select {
-  color: var(--main-bg-color);
+  color: var(--light-text);
   border: solid 1px var(--complementary-color);
   border-radius: 2.5px;
   padding: 0.5rem 0.25rem;
   background-color: transparent;
+}
+
+#home {
+  padding: 2.5% 0;
+  min-height: 100%;
+  background-image: url("/images/backgrounds/bg-2.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 .nav-drawer-wrapper {
@@ -130,6 +136,10 @@ select {
   transition: 250ms ease;
 }
 
+.banner-section {
+  min-height: 500px;
+}
+
 .form-wrapper {
   color: var(--main-bg-color);
   min-height: 500px;
@@ -179,7 +189,15 @@ select {
 .calendar-wrapper {
   height: 350px;
 }
-
+.calendar-time {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  color: var(--complementary-color);
+  height: 100%;
+  z-index: 10;
+}
 .calendar-date {
   display: flex;
   justify-content: center;

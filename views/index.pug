@@ -2,133 +2,160 @@ extends layout
 
 
 block content
-  .container-fluid.w-75.h-100
-    .row.my-4
-      .col
-        .d-none.d-lg-flex.h-100.px-4.justify-content-end.align-items-center
-          a.nav-links.mr-5(href='/error') #{nav[0]}
-          a.nav-links.mr-5(href='/error') #{nav[1]}
-          a.nav-links(href='/error') #{nav[2]}
-        .d-flex.d-lg-none.justify-content-end.align-items-center.nav-drawer
-          button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
-            != fs.readFileSync("./public/images/icons/menu.svg")
-        .d-none.d-lg-none.flex-column.justify-content-end.align-items-end.nav-drawer
-          button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
-              != fs.readFileSync("./public/images/icons/close.svg")
-          .d-flex.position-relative
-            .position-absolute.rounded.nav-drawer-wrapper
-              a.nav-links.mb-4(href='/error') #{nav[0]}
-              a.nav-links.mb-4(href='/error') #{nav[1]}
-              a.nav-links.mb-4(href='/error') #{nav[2]}
+  #home
+    .container-fluid.w-75.h-100
+      .row.mb-4
+        .col
+          .d-none.d-lg-flex.h-100.px-4.justify-content-end.align-items-center
+            a.nav-links.mr-5(href='/error') #{nav[0]}
+            a.nav-links.mr-5(href='/error') #{nav[1]}
+            a.nav-links(href='/error') #{nav[2]}
+          .d-flex.d-lg-none.justify-content-end.align-items-center.nav-drawer
+            button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
+              != fs.readFileSync("./public/images/icons/menu.svg")
+          .d-none.d-lg-none.flex-column.justify-content-end.align-items-end.nav-drawer
+            button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
+                != fs.readFileSync("./public/images/icons/close.svg")
+            .d-flex.position-relative
+              .position-absolute.rounded.nav-drawer-wrapper
+                a.nav-links.mb-4(href='/error') #{nav[0]}
+                a.nav-links.mb-4(href='/error') #{nav[1]}
+                a.nav-links.mb-4(href='/error') #{nav[2]}
 
-    .row.h-75.px-2.d-flex.flex-row.align-items-center.align-self-center
-      .col-12.col-lg-7.nopadding
-        .d-flex.flex-column
-          h1.banner-title #{bannerTitle}
-          .px-2
-            p.banner-subtitle
-              | #{bannerSubtitle[0]}
-              br
-              | #{bannerSubtitle[1]}
-            .container-fluid.nopadding
-              .row
-                .col-12.col-lg-auto.mt-3
-                  button.btn.btn-lg.custom-btn-primary.book-form-button.form-button(type="button" onclick="displayForm('book')")
-                    != fs.readFileSync("./public/images/icons/book.svg")
-                    | &nbsp; #{features.ft1.buttonLabel}
-                .col-12.col-lg-auto.mt-3
-                  button.btn.btn-lg.custom-btn-secondary.register-form-button.form-button(type="button" onclick="displayForm('register')")
-                    != fs.readFileSync("./public/images/icons/pen.svg")
-                    | &nbsp; #{features.ft2.buttonLabel}
+      .row.h-75.px-2.align-self-center
+        .col-12.col-lg-7.d-flex.align-items-center.nopadding.banner-section
+          .d-flex.flex-column
+            h1.banner-title #{bannerTitle}
+            .px-2
+              p.banner-subtitle
+                | #{bannerSubtitle[0]}
+                br
+                | #{bannerSubtitle[1]}
+              .container-fluid.nopadding
+                .row
+                  .col-12.col-lg-auto.mt-3
+                    button.btn.btn-lg.custom-btn-primary.book-form-button.form-button(type="button" onclick="displayForm('book')")
+                      != fs.readFileSync("./public/images/icons/book.svg")
+                      | &nbsp; #{features.ft1.buttonLabel}
+                  .col-12.col-lg-auto.mt-3
+                    button.btn.btn-lg.custom-btn-secondary.register-form-button.form-button(type="button" onclick="displayForm('register')")
+                      != fs.readFileSync("./public/images/icons/pen.svg")
+                      | &nbsp; #{features.ft2.buttonLabel}
+            
+        .col-12.col-lg-5.nopadding
+          //- registration form
+          .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.register-form.form-wrapper
+            form.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
+              .h3.text-center.mb-4 #{features.ft2.buttonLabel}
+              #register-form-carousel.carousel.slide
+                .carousel-inner
+                  //- form page 1
+                  .carousel-item.active
+                    .d-block.w-100
+                      .form-row
+                        .col.input-field.mb-4
+                          input.w-100(type="text", name="first" placeholder="First Name")
+                        .col.input-field.mb-4
+                          input.w-100(type="text", name="last" placeholder="Last Name")
+                      .input-field.mb-4
+                        input.w-100(type="email", name="email" placeholder="E-mail")
+                      .input-field.mb-4
+                        input.w-100(type="password", name="password" placeholder="Password")
+                      .form-btn
+                        input(type="button", value="Next" onclick="slideNextForm('#register-form-carousel', 1)")
+                  //- form page 2
+                  .carousel-item
+                    .d-block.w-100
+                      .form-row
+                        .col.input-field.mb-4
+                          input.w-100(type="text", name="address-line1" placeholder="Address Line 1")
+                        .col.input-field.mb-4
+                          input.w-100(type="text", name="address-line2" placeholder="Address Line 2")
+                      .form-row
+                        .col.input-field.mb-4
+                          input.w-100(type="text", name="city" placeholder="City")
+                        .col.input-field.mb-4
+                          input.w-100(type="text", name="post-code" placeholder="Postcode")
+                      .input-field.mb-4
+                        input.w-100(type="date", name="dob" placeholder="Date of Birth" )
+                      .form-row
+                        .col.input-field.mb-4
+                          select.w-100
+                            option(value="" disabled selected) Gender
+                            option(value="Female") Female
+                            option(value="Male") Male
+                            option(value="Prefer not to say") Prefer not to say
+                        .col.input-field.mb-4
+                          select.w-100
+                            option(value="" disabled selected) Ethnicity
+                            option(value="White") White
+                            option(value="Mixed") Mixed
+                            option(value="Asian") Asian
+                            option(value="Black") Black
+                            option(value="Other") Other
+                            option(value="Prefer not to say") Prefer not to say
+                      .form-btn
+                        input(type="submit", value="Submit")
+            //- form pagination
+            .register-form-pagination-wrapper
+              .register-form-pagination(tabindex="0" onclick="slideNextForm('#register-form-carousel',0,true)") 1
+              .register-form-pagination(tabindex="0" onclick="slideNextForm('#register-form-carousel',1,true)") 2
           
-      .col-12.col-lg-5.nopadding
-        //- registration form
-        .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.my-4.register-form.form-wrapper
-          form.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
-            .h3.text-center.mb-4 #{features.ft2.buttonLabel}
-            #register-form-carousel.carousel.slide
-              .carousel-inner
-                //- form page 1
-                .carousel-item.active
-                  .d-block.w-100
-                    .form-row
-                      .col.input-field.mb-4
-                        input.w-100(type="text", name="first" placeholder="First Name")
-                      .col.input-field.mb-4
-                        input.w-100(type="text", name="last" placeholder="Last Name")
-                    .input-field.mb-4
-                      input.w-100(type="email", name="email" placeholder="E-mail")
-                    .input-field.mb-4
-                      input.w-100(type="password", name="password" placeholder="Password")
-                    .form-btn
-                      input(type="button", value="Next" onclick="slideNextForm('#register-form-carousel', 1)")
-                //- form page 2
-                .carousel-item
-                  .d-block.w-100
-                    .form-row
-                      .col.input-field.mb-4
-                        input.w-100(type="text", name="address-line1" placeholder="Address Line 1")
-                      .col.input-field.mb-4
-                        input.w-100(type="text", name="address-line2" placeholder="Address Line 2")
-                    .form-row
-                      .col.input-field.mb-4
-                        input.w-100(type="text", name="city" placeholder="City")
-                      .col.input-field.mb-4
-                        input.w-100(type="text", name="post-code" placeholder="Postcode")
-                    .input-field.mb-4
-                      input.w-100(type="date", name="dob" placeholder="Date of Birth" )
-                    .form-row
-                      .col.input-field.mb-4
-                        select.w-100
-                          option(value="" disabled selected) Gender
-                          option(value="Female") Female
-                          option(value="Male") Male
-                          option(value="Prefer not to say") Prefer not to say
-                      .col.input-field.mb-4
-                        select.w-100
-                          option(value="" disabled selected) Ethnicity
-                          option(value="White") White
-                          option(value="Mixed") Mixed
-                          option(value="Asian") Asian
-                          option(value="Black") Black
-                          option(value="Other") Other
-                          option(value="Prefer not to say") Prefer not to say
-                    .form-btn
-                      input(type="submit", value="Submit")
-          //- form pagination
-          .register-form-pagination-wrapper
-            .register-form-pagination(tabindex="0" onclick="slideNextForm('#register-form-carousel',0,true)") 1
-            .register-form-pagination(tabindex="0" onclick="slideNextForm('#register-form-carousel',1,true)") 2
-        
-        
-        //- bookings form 
-        .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.my-4.book-form.form-wrapper
-          .d-block
-            .h3.text-center.mb-4 #{features.ft1.buttonLabel}
-            .d-flex.flex-column.shadow-lg.rounded.overflow-hidden.calendar-wrapper
-              .h-25.p-4.text-right.bg-primary 
-                .h4.text-white #{calendar.month}
-              .h-75.pt-2.pb-4.px-4.d-flex.bg-light
-                each val, key in calendar.slots
-                  .d-flex.flex-column.justify-content-between.text-right.w-100.h-100
-                    .text-muted.text-capitalize #{key}
-                    .calendar-date(class=`calendar-date-${val.week1.availability}`) #{val.week1.date}
-                    .calendar-date(class=`calendar-date-${val.week2.availability}`) #{val.week2.date}
-                    .calendar-date(class=`calendar-date-${val.week3.availability}`) #{val.week3.date}
-                    .calendar-date(class=`calendar-date-${val.week4.availability}`) #{val.week4.date}
-                    .calendar-date(class=`calendar-date-${val.week5.availability}`) #{val.week5.date}
+          
+          //- bookings form 
+          .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.book-form.form-wrapper
+            .d-block
+              .h3.text-center.mb-4 #{features.ft1.buttonLabel}
+              .d-flex.flex-column.shadow-lg.rounded.overflow-hidden.calendar-wrapper
+                .h-25.p-4.text-right.bg-primary 
+                  .h4.text-white #{month}
+                .h-75.position-relative
+                  //- absolutely positioned hidden time slot selection dropdown
+                  .w-100.pt-2.pb-4.px-4.bg-light.calendar-time
+                    form.book-form-data( name="book" method="post" onsubmit="submitForm(event,'book')")
+                      p #{tips.bookTimeSelection}
+                      .time-slot-input
+                        input.mr-2(type='radio' name='timeSlot')
+                        label
+                      .time-slot-input
+                        input.mr-2(type='radio' name='timeSlot')
+                        label
+                      .time-slot-input
+                        input.mr-2(type='radio' name='timeSlot')
+                        label 
+                      .time-slot-input
+                        input.mr-2(type='radio' name='timeSlot')
+                        label 
+                      br
+                      input.text-primary(type='submit' value='Submit') 
+                      | &nbsp;
+                      input.text-danger(type='button' value="Cancel" onclick="cancelBooking()")
 
-        //- succesful registration message
-        each val, key in features
-          .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-wrapper(class=`${val.id}-form-success`)
-            .d-flex.spinner-border(role='status')
-              span.sr-only Loading...
-            .d-none.flex-column.align-items-center.text-center
-              .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
-              .h4.pb-3
-                span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
-                span.feedback-data
-              .text-white #{prompts[`${val.id}SuccessInfo1`]} 
-              .my-4
-                small #{prompts[`${val.id}SuccessInfo2`]}
+                  .d-flex.h-100.pt-2.pb-4.px-4.bg-light
+                    each val, key in dates
+                      .d-flex.flex-column.justify-content-between.text-right.w-100
+                        .text-muted.text-capitalize #{key}
+                        .calendar-date(class=`calendar-date-${val.week1.availability}` data-time=`${JSON.stringify(val.week1.timeSlots)}` data-month={month}) #{val.week1.date}
+                        .calendar-date(class=`calendar-date-${val.week2.availability}` data-time=`${JSON.stringify(val.week2.timeSlots)}` data-month={month}) #{val.week2.date}
+                        .calendar-date(class=`calendar-date-${val.week3.availability}` data-time=`${JSON.stringify(val.week3.timeSlots)}` data-month={month}) #{val.week3.date}
+                        .calendar-date(class=`calendar-date-${val.week4.availability}` data-time=`${JSON.stringify(val.week4.timeSlots)}` data-month={month}) #{val.week4.date}
+                        .calendar-date(class=`calendar-date-${val.week5.availability}` data-time=`${JSON.stringify(val.week5.timeSlots)}` data-month={month}) #{val.week5.date}
 
+          //- succesful registration message
+          each val, key in features
+            .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-wrapper(class=`${val.id}-form-success`)
+              .d-flex.spinner-border(role='status')
+                span.sr-only Loading...
+              .d-none.flex-column.align-items-center.text-center
+                .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
+                .h4.pb-3
+                  span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
+                  span.small.feedback-data
+                .text-white #{prompts[`${val.id}SuccessInfo1`]} 
+                .my-4
+                  small #{prompts[`${val.id}SuccessInfo2`]}
+
+  .d-flex.fixed-bottom.mb-2.justify-content-center.align-items-center.pagination-wrapper
+    .pagination(onclick='slideNextBgImage(0)')
+    .pagination(onclick='slideNextBgImage(1)')
+    .pagination(onclick='slideNextBgImage(2)')
