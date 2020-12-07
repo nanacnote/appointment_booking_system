@@ -102,8 +102,7 @@ block content
           .d-flex.spinner-border(role='status')
             span.sr-only Loading...
           .d-none.flex-column.align-items-center.text-center
-            .h3.text-success #{prompts.regSuccessHeader}
-            .divider
+            .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
             .h4.pb-3
               span.pr-2 #{prompts.regSuccessAcknowledgment}
               span.user-name

@@ -58,13 +58,6 @@ select {
   background-color: transparent;
 }
 
-.divider {
-  width: 75%;
-  height: 2px;
-  margin: 2rem 0;
-  background: var(--complementary-color);
-}
-
 .form-btn input {
   min-width: 10rem;
   border-radius: 5px;
