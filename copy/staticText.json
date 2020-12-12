@@ -34,7 +34,7 @@
       "registerErrorInfo1": "Something went wrong with your registration. Please refresh and try again",
       "bookSuccessAcknowledgment": "Appointment confirmed",
       "bookSuccessInfo1": "Please remember to follow social distancing rules when you come in for testing",
-      "bookSuccessInfo2": "If unable to attend cancel immediately to allow others to use slots.",
+      "bookSuccessInfo2": "If unable to attend cancel immediately to make slots available for others.",
       "bookErrorAcknowledgment": "404 - error",
       "bookErrorInfo1": "Something went wrong with your booking. Please refresh and try again"
     }

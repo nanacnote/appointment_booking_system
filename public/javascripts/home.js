@@ -1,3 +1,8 @@
+// hold temp page session data
+const tempStore = {
+  bookingsEmail: "",
+};
+
 /**
  * handles API form post request
  *
@@ -7,7 +12,12 @@ function postAgent(formId) {
   $.ajax({
     type: "POST",
     url: `/api?formId=${formId}`,
-    data: $(`.${formId}-form-data`).serialize(),
+    data: $(`.${formId}-form-data`)
+      .clone()
+      .append(
+        `<input name="bookingsEmail" value="${tempStore.bookingsEmail}" />`
+      )
+      .serialize(),
     beforeSend: function () {
       if (formId === "login") return;
       $(`.form-success-error`).addClass("d-flex");
@@ -15,6 +25,8 @@ function postAgent(formId) {
     success: function (data) {
       if (formId === "login") {
         $(".book-form").children().toggleClass("d-block d-none");
+        // update store with current valid email
+        tempStore["bookingsEmail"] = data.email;
         return;
       }
       $(".form-async-spinner").toggleClass("d-flex d-none");
@@ -65,7 +77,6 @@ function displayForm(formId) {
  */
 function loginTrigger(event) {
   event.preventDefault();
-  const credentials = $(".login-form-data").serialize();
   postAgent("login");
 }
 

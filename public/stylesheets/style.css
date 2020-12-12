@@ -70,6 +70,18 @@ select {
   background-size: cover;
 }
 
+#team {
+  display: flex;
+  align-items: center;
+  padding: 5% 0;
+  min-height: 100%;
+  background-image: url("/images/backgrounds/bg-2.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
 .nav-drawer-wrapper {
   display: none;
   right: 0;

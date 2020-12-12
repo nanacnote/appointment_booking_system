@@ -19,7 +19,7 @@ router.post("/", async function (req, res, next) {
     console.log(req.body);
     setTimeout(() => {
       sendEmail({
-        email: "adjeibohyen@hotmail.co.uk",
+        email: req.body.email,
         subject: emailText.subject,
         message: `${emailText.message1} ${req.body.timeSlot}. ${emailText.message2}`,
       });
@@ -35,7 +35,7 @@ router.post("/", async function (req, res, next) {
     });
 
     if (isValidUser) {
-      res.status(200).end();
+      res.status(200).send(req.body);
     } else {
       res.status(404).end();
     }
