@@ -19,7 +19,7 @@ router.post("/", async function (req, res, next) {
     console.log(req.body);
     setTimeout(() => {
       sendEmail({
-        email: req.body.email,
+        email: req.body.bookingsEmail,
         subject: emailText.subject,
         message: `${emailText.message1} ${req.body.timeSlot}. ${emailText.message2}`,
       });
