@@ -1,5 +1,5 @@
 /**
- * handles form post request
+ * handles API form post request
  *
  * @param {string} formId
  */
@@ -8,9 +8,27 @@ function postAgent(formId) {
     type: "POST",
     url: `/api?formId=${formId}`,
     data: $(`.${formId}-form-data`).serialize(),
+    beforeSend: function () {
+      if (formId === "login") return;
+      $(`.form-success-error`).addClass("d-flex");
+    },
     success: function (data) {
-      $(`.${formId}-form-success`).children().toggleClass("d-flex d-none");
-      $(".feedback-data").text(data.first || data.timeSlot);
+      if (formId === "login") {
+        $(".book-form").children().toggleClass("d-block d-none");
+        return;
+      }
+      $(".form-async-spinner").toggleClass("d-flex d-none");
+      $(`.${formId}-form-success`).addClass("d-flex");
+
+      $(".success-feedback-data").text(data.first || data.timeSlot);
+    },
+    error: function () {
+      if (formId === "login") {
+        $(".login-error-feedback").text("*invalid login credentials");
+        return;
+      }
+      $(".form-async-spinner").toggleClass("d-flex d-none");
+      $(`.${formId}-form-error`).addClass("d-flex");
     },
   });
 }
@@ -37,8 +55,18 @@ function displayForm(formId) {
   $(`.${formId}-form-button`).attr("disabled", true);
   $(`.${formId}-form`).addClass("d-flex");
 
-  // add eventlistner to carousel to stop swipe and listen for what page its on to highlight
+  $("#register-form-carousel").carousel(0);
+  $("#register-form-carousel").carousel("pause");
   highlightSelection(".register-form-pagination", 0);
+}
+
+/**
+ * handles user logic logic
+ */
+function loginTrigger(event) {
+  event.preventDefault();
+  const credentials = $(".login-form-data").serialize();
+  postAgent("login");
 }
 
 /**
@@ -50,7 +78,6 @@ function displayForm(formId) {
 function submitForm(event, formId) {
   event.preventDefault();
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
-  $(`.${formId}-form-success`).addClass("d-flex");
   postAgent(formId);
 }
 
@@ -151,4 +178,9 @@ function startBgSlideShow() {
 $(document).ready(() => {
   startBgSlideShow();
   selectDate();
+
+  // prevent carousel from sliding on touch screen
+  $("#register-form-carousel").on("slid.bs.carousel", function (e) {
+    $("#register-form-carousel").carousel("pause");
+  });
 });

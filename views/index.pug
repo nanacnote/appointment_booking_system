@@ -4,25 +4,7 @@ extends layout
 block content
   #home
     .container-fluid.w-75.h-100
-      .row.mb-4
-        .col
-          .d-none.d-lg-flex.h-100.px-4.justify-content-end.align-items-center
-            a.nav-links.mr-5(href='/error') #{nav[0]}
-            a.nav-links.mr-5(href='/error') #{nav[1]}
-            a.nav-links(href='/error') #{nav[2]}
-          .d-flex.d-lg-none.justify-content-end.align-items-center.nav-drawer
-            button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
-              != fs.readFileSync("./public/images/icons/menu.svg")
-          .d-none.d-lg-none.flex-column.justify-content-end.align-items-end.nav-drawer
-            button.btn.btn-lg.custom-btn-secondary(type="button" onclick="toggleNavDrawer()")
-                != fs.readFileSync("./public/images/icons/close.svg")
-            .d-flex.position-relative
-              .position-absolute.rounded.nav-drawer-wrapper
-                a.nav-links.mb-4(href='/error') #{nav[0]}
-                a.nav-links.mb-4(href='/error') #{nav[1]}
-                a.nav-links.mb-4(href='/error') #{nav[2]}
-
-      .row.h-75.px-2.align-self-center
+      .row.h-75.px-2
         .col-12.col-lg-7.d-flex.align-items-center.nopadding.banner-section
           .d-flex.flex-column
             h1.banner-title #{bannerTitle}
@@ -34,19 +16,20 @@ block content
               .container-fluid.nopadding
                 .row
                   .col-12.col-lg-auto.mt-3
+                    //- registration and bookings button
                     button.btn.btn-lg.custom-btn-primary.book-form-button.form-button(type="button" onclick="displayForm('book')")
                       != fs.readFileSync("./public/images/icons/book.svg")
-                      | &nbsp; #{features.ft1.buttonLabel}
+                      | &nbsp; #{features.feature1.buttonLabel}
                   .col-12.col-lg-auto.mt-3
                     button.btn.btn-lg.custom-btn-secondary.register-form-button.form-button(type="button" onclick="displayForm('register')")
                       != fs.readFileSync("./public/images/icons/pen.svg")
-                      | &nbsp; #{features.ft2.buttonLabel}
+                      | &nbsp; #{features.feature2.buttonLabel}
             
         .col-12.col-lg-5.nopadding
           //- registration form
           .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.register-form.form-wrapper
             form.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
-              .h3.text-center.mb-4 #{features.ft2.buttonLabel}
+              .h3.text-center.mb-4 #{features.feature2.title}
               #register-form-carousel.carousel.slide
                 .carousel-inner
                   //- form page 1
@@ -54,30 +37,30 @@ block content
                     .d-block.w-100
                       .form-row
                         .col.input-field.mb-4
-                          input.w-100(type="text", name="first" placeholder="First Name")
+                          input.w-100(type="text" name="first" placeholder="First Name" )
                         .col.input-field.mb-4
-                          input.w-100(type="text", name="last" placeholder="Last Name")
+                          input.w-100(type="text" name="last" placeholder="Last Name")
                       .input-field.mb-4
-                        input.w-100(type="email", name="email" placeholder="E-mail")
+                        input.w-100(type="email" name="email" placeholder="E-mail")
                       .input-field.mb-4
-                        input.w-100(type="password", name="password" placeholder="Password")
+                        input.w-100(type="password" name="password" placeholder="Password")
                       .form-btn
-                        input(type="button", value="Next" onclick="slideNextForm('#register-form-carousel', 1)")
+                        input(type="button" value="Next" onclick="slideNextForm('#register-form-carousel', 1)")
                   //- form page 2
                   .carousel-item
                     .d-block.w-100
                       .form-row
                         .col.input-field.mb-4
-                          input.w-100(type="text", name="address-line1" placeholder="Address Line 1")
+                          input.w-100(type="text" name="address-line1" placeholder="Address Line 1")
                         .col.input-field.mb-4
-                          input.w-100(type="text", name="address-line2" placeholder="Address Line 2")
+                          input.w-100(type="text" name="address-line2" placeholder="Address Line 2")
                       .form-row
                         .col.input-field.mb-4
-                          input.w-100(type="text", name="city" placeholder="City")
+                          input.w-100(type="text" name="city" placeholder="City")
                         .col.input-field.mb-4
-                          input.w-100(type="text", name="post-code" placeholder="Postcode")
+                          input.w-100(type="text" name="post-code" placeholder="Postcode")
                       .input-field.mb-4
-                        input.w-100(type="date", name="dob" placeholder="Date of Birth" )
+                        input.w-100(type="date" name="dob" placeholder="Date of Birth" )
                       .form-row
                         .col.input-field.mb-4
                           select.w-100
@@ -105,7 +88,19 @@ block content
           //- bookings form 
           .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.book-form.form-wrapper
             .d-block
-              .h3.text-center.mb-4 #{features.ft1.buttonLabel}
+              form.login-form-data(name="login", method="post" onsubmit="loginTrigger(event)")
+                .h3.text-center.mb-4 #{features.feature3.title}
+                .input-field.mb-4
+                  input.w-100(type="email" name="email" placeholder="E-mail" )
+                .input-field.mb-4
+                  input.w-100(type="password" name="password" placeholder="Password")
+                .form-btn
+                  input(type="submit" value=`${features.feature3.buttonLabel}`)
+                .fixed-alert
+                  .small.text-danger.my-2.login-error-feedback
+                    
+            .d-none
+              .h3.text-center.mb-4 #{features.feature1.title}
               .d-flex.flex-column.shadow-lg.rounded.overflow-hidden.calendar-wrapper
                 .h-25.p-4.text-right.bg-primary 
                   .h4.text-white #{month}
@@ -141,20 +136,25 @@ block content
                         .calendar-date(class=`calendar-date-${val.week4.availability}` data-time=`${JSON.stringify(val.week4.timeSlots)}` data-month={month}) #{val.week4.date}
                         .calendar-date(class=`calendar-date-${val.week5.availability}` data-time=`${JSON.stringify(val.week5.timeSlots)}` data-month={month}) #{val.week5.date}
 
-          //- succesful registration message
-          each val, key in features
-            .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-wrapper(class=`${val.id}-form-success`)
-              .d-flex.spinner-border(role='status')
-                span.sr-only Loading...
-              .d-none.flex-column.align-items-center.text-center
-                .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
-                .h4.pb-3
-                  span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
-                  span.small.feedback-data
-                .text-white #{prompts[`${val.id}SuccessInfo1`]} 
-                .my-4
-                  small #{prompts[`${val.id}SuccessInfo2`]}
-
+          //- success or error registration or bookings message
+          .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-wrapper.form-success-error
+            .d-flex.spinner-border.form-async-spinner(role='status')
+              span.sr-only Loading...
+            .d-none.form-async-spinner
+              each val, key in features
+                .d-none.flex-column.align-items-center.text-center(class=`${val.id}-form-success`)
+                  .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
+                  .h4.pb-3
+                    span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
+                    span.small.success-feedback-data
+                  .text-white #{prompts[`${val.id}SuccessInfo1`]} 
+                  .my-4
+                    small #{prompts[`${val.id}SuccessInfo2`]}
+                .d-none.flex-column.align-items-center.text-center(class=`${val.id}-form-error`)
+                  .w-25.mb-4!= fs.readFileSync("./public/images/icons/error.svg")
+                  .h4.pb-3 #{prompts[`${val.id}ErrorAcknowledgment`]}
+                  .text-white #{prompts[`${val.id}ErrorInfo1`]}
+              
   .d-flex.fixed-bottom.mb-2.justify-content-center.align-items-center.pagination-wrapper
     .pagination(onclick='slideNextBgImage(0)')
     .pagination(onclick='slideNextBgImage(1)')

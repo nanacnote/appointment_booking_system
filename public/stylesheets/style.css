@@ -35,6 +35,10 @@ body {
   margin: 0 !important;
 }
 
+input:focus {
+  outline: 0 !important;
+}
+
 a {
   color: var(--dark-text);
   text-decoration: none;
@@ -55,7 +59,9 @@ select {
 }
 
 #home {
-  padding: 2.5% 0;
+  display: flex;
+  align-items: center;
+  padding: 5% 0;
   min-height: 100%;
   background-image: url("/images/backgrounds/bg-2.png");
   background-repeat: no-repeat;
@@ -226,6 +232,14 @@ select {
   cursor: pointer;
   transform: scale(1.25);
   transition: 250ms ease;
+}
+
+.fixed-alert {
+  position: relative;
+}
+
+.fixed-alert > div:first-child {
+  position: absolute;
 }
 
 .pagination {
