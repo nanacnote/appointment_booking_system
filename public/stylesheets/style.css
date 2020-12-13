@@ -9,7 +9,7 @@
   --color-danger-light: rgb(255, 0, 0, 0.5);
   --color-success: #008000;
   --color-success-light: rgb(0, 128, 0, 0.5);
-  --color-light-light: rgba(255, 255, 255, 0.5);
+  --color-dark-light: rgba(0, 0, 0, 0.5);
 }
 
 ::placeholder {
@@ -355,4 +355,8 @@ option {
   backdrop-filter: blur(10px);
   background-color: var(--complementary-color-light);
   color: var(--light-text);
+}
+
+.card-img-overlay {
+  background-color: var(--color-dark-light);
 }
