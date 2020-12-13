@@ -56,7 +56,8 @@
         "name": "Israel",
         "role": "UI/UX Designer",
         "details": [
-          "Lead the design approach by adopting best practices with accessibilty as a backdrop"
+          "Lead the design approach by adopting best practices with accessibilty as a backdrop",
+          "Helped with HTML and CSS, coloring, and layout of the whole page, along side with some simple Javascript work."
         ]
       },
       "member2": {
@@ -73,7 +74,8 @@
         "name": "Elwyn",
         "role": "QA & Testing",
         "details": [
-          "Coordinated with the developer and designer to ensure the application met usability and design standards."
+          "Coordinated with the developer and designer to ensure the application met usability and design standards.",
+          "Assisted in creating Back end of the server and also assisted with some difficult parts of CSS and configs."
         ]
       }
     }
