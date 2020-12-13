@@ -169,7 +169,9 @@ block content
                     span #{prompts[`${val.id}SuccessAcknowledgment`]}
                     if val.id === 'book'
                       .h5 Email confirmation sent
-                    .small.text-white.bg-success.rounded.py-4.success-feedback-data
+                      .small.text-white.bg-success.rounded.py-4.success-feedback-data
+                    if val.id === 'register'
+                      .success-feedback-data
                   .text-white #{prompts[`${val.id}SuccessInfo1`]} 
                   .my-4
                     small #{prompts[`${val.id}SuccessInfo2`]}

@@ -65,6 +65,7 @@ function isRequired(str) {
  * @param {object} inputDictionary object with input name as key and boolean as value based on if it passed validation
  */
 function errorAlert(inputDictionary) {
+  let counter = 0;
   const dictArray = Object.entries(inputDictionary);
   dictArray.forEach(([input, isValid]) => {
     if (isValid) {
@@ -72,6 +73,7 @@ function errorAlert(inputDictionary) {
         .removeClass("input-error")
         .addClass("input-success")
         .text("*valid input");
+      counter += 1;
     } else {
       $(`.${input}-error-feedback`)
         .removeClass("input-success")
@@ -79,6 +81,7 @@ function errorAlert(inputDictionary) {
         .text(`${errorFeedback[input]}`);
     }
   });
+  return counter === dictArray.length;
 }
 
 /**
@@ -98,5 +101,5 @@ function formValidator(formId) {
 
   data = { ethnicity: false, gender: false, ...data };
 
-  errorAlert(data);
+  return errorAlert(data);
 }
