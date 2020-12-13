@@ -37,6 +37,14 @@
       "bookSuccessInfo2": "If unable to attend cancel immediately to make slots available for others.",
       "bookErrorAcknowledgment": "404 - error",
       "bookErrorInfo1": "Something went wrong with your booking. Please refresh and try again"
+    },
+    "formAlert": {
+      "isRequired": "*required field",
+      "notRequired": "optional field",
+      "email": "*valid email required",
+      "postcode": "*valid UK postcode required",
+      "phone": "*valid UK phone required",
+      "password": "min 8 characters 1 letter 1 number"
     }
   },
   "team": {

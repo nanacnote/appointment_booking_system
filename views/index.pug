@@ -38,14 +38,24 @@ block content
                       .form-row
                         .col.input-field.mb-4
                           input.w-100(type="text" name="first" placeholder="First Name" )
+                          .fixed-alert
+                            .first-error-feedback #{formAlert.isRequired}
                         .col.input-field.mb-4
                           input.w-100(type="text" name="last" placeholder="Last Name")
+                          .fixed-alert
+                            .last-error-feedback #{formAlert.isRequired}
                       .input-field.mb-4
                         input.w-100(type="tel" name="phone" placeholder="Phone Number")
+                        .fixed-alert
+                            .phone-error-feedback #{formAlert.phone}
                       .input-field.mb-4
                         input.w-100(type="email" name="email" placeholder="E-mail")
+                        .fixed-alert
+                            .email-error-feedback #{formAlert.email}
                       .input-field.mb-4
                         input.w-100(type="password" name="password" placeholder="Password")
+                        .fixed-alert
+                            .password-error-feedback #{formAlert.password}
                       .form-btn
                         input(type="button" value="Next" onclick="slideNextForm('#register-form-carousel', 1)")
                   //- form page 2
@@ -54,24 +64,36 @@ block content
                       .form-row
                         .col.input-field.mb-4
                           input.w-100(type="text" name="address-line1" placeholder="Address Line 1")
+                          .fixed-alert
+                            .address-line1-error-feedback #{formAlert.isRequired}
                         .col.input-field.mb-4
                           input.w-100(type="text" name="address-line2" placeholder="Address Line 2")
+                          .fixed-alert
+                            .address-line2-error-feedback #{formAlert.notRequired}
                       .form-row
                         .col.input-field.mb-4
                           input.w-100(type="text" name="city" placeholder="City")
+                          .fixed-alert
+                            .city-error-feedback #{formAlert.isRequired}
                         .col.input-field.mb-4
                           input.w-100(type="text" name="post-code" placeholder="Postcode")
+                          .fixed-alert
+                            .post-code-error-feedback #{formAlert.postcode}
                       .input-field.mb-4
                         input.w-100(type="date" name="dob" placeholder="Date of Birth" )
+                        .fixed-alert
+                            .dob-error-feedback #{formAlert.isRequired}
                       .form-row
                         .col.input-field.mb-4
-                          select.w-100
+                          select.w-100(name="gender")
                             option(value="" disabled selected) Gender
                             option(value="Female") Female
                             option(value="Male") Male
                             option(value="Prefer not to say") Prefer not to say
+                          .fixed-alert
+                            .gender-error-feedback #{formAlert.isRequired}
                         .col.input-field.mb-4
-                          select.w-100
+                          select.w-100(name="ethnicity")
                             option(value="" disabled selected) Ethnicity
                             option(value="White") White
                             option(value="Mixed") Mixed
@@ -79,6 +101,8 @@ block content
                             option(value="Black") Black
                             option(value="Other") Other
                             option(value="Prefer not to say") Prefer not to say
+                          .fixed-alert
+                            .ethnicity-error-feedback #{formAlert.isRequired}
                       .form-btn
                         input(type="submit", value="Submit")
             //- form pagination
@@ -99,7 +123,7 @@ block content
                 .form-btn
                   input(type="submit" value=`${features.feature3.buttonLabel}`)
                 .fixed-alert
-                  .small.text-danger.my-2.login-error-feedback
+                  .login-error-feedback
                     
             .d-none.m-4.p-2.w-100
               .h3.text-center.mb-4 #{features.feature1.title}

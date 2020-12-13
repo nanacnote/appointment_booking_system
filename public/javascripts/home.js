@@ -37,7 +37,9 @@ function postAgent(formId) {
     },
     error: function () {
       if (formId === "login") {
-        $(".login-error-feedback").text("*invalid login credentials");
+        $(".login-error-feedback")
+          .addClass("input-error")
+          .text("*invalid login credentials");
       } else {
         $(".form-async-spinner").removeClass("d-flex").addClass("d-none");
         $(`.${formId}-form-error`).addClass("d-flex");
@@ -89,9 +91,12 @@ function loginTrigger(event) {
  */
 function submitForm(event, formId) {
   event.preventDefault();
-  $(".form-wrapper").removeClass("d-flex").addClass("d-none");
-  $(".form-success-error").removeClass("d-flex").addClass("d-none");
-  postAgent(formId);
+  const isValidated = formValidator(formId);
+  if (isValidated) {
+    $(".form-wrapper").removeClass("d-flex").addClass("d-none");
+    $(".form-success-error").removeClass("d-flex").addClass("d-none");
+    postAgent(formId);
+  }
 }
 
 /**

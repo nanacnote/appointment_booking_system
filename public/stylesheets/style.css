@@ -4,7 +4,11 @@
   --dark-text: #000;
   --light-text: #fff;
   --complementary-color: #00008b;
-  --complementary-color-light: rgba(0, 0, 139, 0.25);
+  --complementary-color-light: rgba(0, 0, 139, 0.5);
+  --color-danger: #ff0000;
+  --color-danger-light: rgb(255, 0, 0, 0.5);
+  --color-success: #008000;
+  --color-success-light: rgb(0, 128, 0, 0.5);
 }
 
 ::placeholder {
@@ -56,6 +60,9 @@ select {
   border-radius: 2.5px;
   padding: 0.5rem 0.25rem;
   background-color: transparent;
+}
+option {
+  background-color: var(--complementary-color);
 }
 
 #home {
@@ -224,26 +231,19 @@ select {
 }
 .calendar-date-full {
   color: white;
-  border: solid 1px red;
+  border: solid 1px var(--color-danger);
+  background-color: var(--color-danger-light);
   cursor: not-allowed;
-  background-color: rgb(255, 0, 0, 0.5);
 }
 .calendar-date-open {
   color: white;
-  border: solid 1px green;
-  background-color: rgb(0, 128, 0, 0.5);
+  border: solid 1px var(--color-success);
+  background-color: var(--color-success-light);
 }
 .calendar-date-open:hover {
   cursor: pointer;
   transform: scale(1.25);
   transition: 250ms ease;
-}
-
-.fixed-alert {
-  position: relative;
-}
-.fixed-alert > div:first-child {
-  position: absolute;
 }
 
 .pagination {
@@ -273,6 +273,20 @@ select {
 .pagination:hover::before {
   opacity: 0.5;
   transition: 250ms ease;
+}
+
+.fixed-alert {
+  position: relative;
+}
+.fixed-alert > div:first-child {
+  position: absolute;
+  font-size: 10px;
+}
+.input-error {
+  color: pink;
+}
+.input-success {
+  color: greenyellow;
 }
 
 #team {

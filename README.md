@@ -1,6 +1,6 @@
 # Covid 19 Appointment Booking System
 
-This is a Express.JS App configured and setup up with Pug templating engine.
+This is an Express.JS App configured and setup up with Pug templating engine.
 
 - Linting with [ESLint](https://eslint.org/)
 - Formatting with [Prettier](https://prettier.io/)
@@ -15,7 +15,7 @@ View Deployed Version:
 
 ---
 
-## Setup the application
+## Setup the application locally
 
 Start a new local workspace in VScode or prefered editor.
 In your terminal run the commands below line by line,
@@ -24,7 +24,7 @@ In your terminal run the commands below line by line,
 - cd appointment_booking_system
 - npm install
 
-## Run the application
+## Run the application locally
 
 While inside the `appointment_booking_system` directory run the following command:
 
