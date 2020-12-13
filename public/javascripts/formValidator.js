@@ -79,7 +79,6 @@ function errorAlert(inputDictionary) {
         .text(`${errorFeedback[input]}`);
     }
   });
-  console.log(inputDictionary);
 }
 
 /**
@@ -90,11 +89,14 @@ function errorAlert(inputDictionary) {
 function formValidator(formId) {
   if (formId !== "register") return true;
 
-  const data = {};
+  let data = {};
   const formData = $(`.${formId}-form-data`).serializeArray();
 
   $(formData).each(function (index, obj) {
     data[obj.name] = validate[obj.name](obj.value);
   });
+
+  data = { ethnicity: false, gender: false, ...data };
+
   errorAlert(data);
 }
