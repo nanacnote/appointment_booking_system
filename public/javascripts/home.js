@@ -20,27 +20,28 @@ function postAgent(formId) {
       .serialize(),
     beforeSend: function () {
       if (formId === "login") return;
-      $(`.form-success-error`).addClass("d-flex");
+      $(".form-success-error-wrapper").addClass("d-flex");
+      $(".form-async-spinner").removeClass("d-flex d-none").addClass("d-flex");
     },
     success: function (data) {
       if (formId === "login") {
         $(".book-form").children().toggleClass("d-block d-none");
         // update store with current valid email
         tempStore["bookingsEmail"] = data.email;
-        return;
-      }
-      $(".form-async-spinner").toggleClass("d-flex d-none");
-      $(`.${formId}-form-success`).addClass("d-flex");
+      } else {
+        $(`.${formId}-form-success`).addClass("d-flex");
+        $(".form-async-spinner").removeClass("d-flex").addClass("d-none");
 
-      $(".success-feedback-data").text(data.first || data.timeSlot);
+        $(".success-feedback-data").text(data.first || data.timeSlot);
+      }
     },
     error: function () {
       if (formId === "login") {
         $(".login-error-feedback").text("*invalid login credentials");
-        return;
+      } else {
+        $(".form-async-spinner").removeClass("d-flex").addClass("d-none");
+        $(`.${formId}-form-error`).addClass("d-flex");
       }
-      $(".form-async-spinner").toggleClass("d-flex d-none");
-      $(`.${formId}-form-error`).addClass("d-flex");
     },
   });
 }
@@ -89,6 +90,7 @@ function loginTrigger(event) {
 function submitForm(event, formId) {
   event.preventDefault();
   $(".form-wrapper").removeClass("d-flex").addClass("d-none");
+  $(".form-success-error").removeClass("d-flex").addClass("d-none");
   postAgent(formId);
 }
 

@@ -27,8 +27,8 @@ block content
             
         .col-12.col-lg-5.nopadding
           //- registration form
-          .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.register-form.form-wrapper
-            form.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
+          .d-none.position-relative.justify-content-center.align-items-center.rounded.register-form.form-wrapper
+            form.m-4.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
               .h3.text-center.mb-4 #{features.feature2.title}
               #register-form-carousel.carousel.slide
                 .carousel-inner
@@ -40,6 +40,8 @@ block content
                           input.w-100(type="text" name="first" placeholder="First Name" )
                         .col.input-field.mb-4
                           input.w-100(type="text" name="last" placeholder="Last Name")
+                      .input-field.mb-4
+                        input.w-100(type="tel" name="phone" placeholder="Phone Number")
                       .input-field.mb-4
                         input.w-100(type="email" name="email" placeholder="E-mail")
                       .input-field.mb-4
@@ -86,9 +88,9 @@ block content
           
           
           //- bookings form 
-          .d-none.position-relative.justify-content-center.align-items-center.rounded.p-4.book-form.form-wrapper
+          .d-none.position-relative.justify-content-center.align-items-center.rounded.book-form.form-wrapper
             .d-block
-              form.login-form-data(name="login", method="post" onsubmit="loginTrigger(event)")
+              form.m-4.login-form-data(name="login", method="post" onsubmit="loginTrigger(event)")
                 .h3.text-center.mb-4 #{features.feature3.title}
                 .input-field.mb-4
                   input.w-100(type="email" name="email" placeholder="E-mail" )
@@ -99,14 +101,14 @@ block content
                 .fixed-alert
                   .small.text-danger.my-2.login-error-feedback
                     
-            .d-none
+            .d-none.m-4
               .h3.text-center.mb-4 #{features.feature1.title}
               .d-flex.flex-column.shadow-lg.rounded.overflow-hidden.calendar-wrapper
                 .h-25.p-4.text-right.bg-primary 
                   .h4.text-white #{month}
                 .h-75.position-relative
                   //- absolutely positioned hidden time slot selection dropdown
-                  .w-100.pt-2.pb-4.px-4.bg-light.calendar-time
+                  .w-100.pt-2.pb-4.px-4.calendar-time
                     form.book-form-data( name="book" method="post" onsubmit="submitForm(event,'book')")
                       p #{tips.bookTimeSelection}
                       .time-slot-input
@@ -115,12 +117,6 @@ block content
                       .time-slot-input
                         input.mr-2(type='radio' name='timeSlot')
                         label
-                      .time-slot-input
-                        input.mr-2(type='radio' name='timeSlot')
-                        label 
-                      .time-slot-input
-                        input.mr-2(type='radio' name='timeSlot')
-                        label 
                       br
                       input.text-primary(type='submit' value='Submit') 
                       | &nbsp;
@@ -137,12 +133,13 @@ block content
                         .calendar-date(class=`calendar-date-${val.week5.availability}` data-time=`${JSON.stringify(val.week5.timeSlots)}` data-month={month}) #{val.week5.date}
 
           //- success or error registration or bookings message
-          .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.form-wrapper.form-success-error
-            .d-flex.spinner-border.form-async-spinner(role='status')
-              span.sr-only Loading...
-            .d-none.form-async-spinner
+          .d-none.flex-column.justify-content-center.align-items-center.rounded.p-4.my-4.position-relative.form-wrapper.form-success-error-wrapper
+            .d-flex.justify-content-center.align-items-center.position-absolute.w-100.h-100.form-async-spinner
+              .spinner-border(role='status')
+                span.sr-only Loading...
+            .d-flex
               each val, key in features
-                .d-none.flex-column.align-items-center.text-center(class=`${val.id}-form-success`)
+                .d-none.flex-column.align-items-center.text-center.form-success-error(class=`${val.id}-form-success`)
                   .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
                   .h4.pb-3
                     span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
@@ -150,7 +147,7 @@ block content
                   .text-white #{prompts[`${val.id}SuccessInfo1`]} 
                   .my-4
                     small #{prompts[`${val.id}SuccessInfo2`]}
-                .d-none.flex-column.align-items-center.text-center(class=`${val.id}-form-error`)
+                .d-none.flex-column.align-items-center.text-center.form-success-error(class=`${val.id}-form-error`)
                   .w-25.mb-4!= fs.readFileSync("./public/images/icons/error.svg")
                   .h4.pb-3 #{prompts[`${val.id}ErrorAcknowledgment`]}
                   .text-white #{prompts[`${val.id}ErrorInfo1`]}

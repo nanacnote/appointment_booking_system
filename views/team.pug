@@ -2,4 +2,28 @@ extends layout
 
 block content
    #team
-    .container-fluid.w-75.h-100
+    .container-fluid.w-75
+      .d-flex.flex-column.justify-content-center.align-items-center
+        h1.banner-title #{bannerTitle}
+        .px-2
+          p.banner-subtitle #{bannerSubtitle}
+        .container-fluid
+          .row
+            .col.team-profile
+              .team-pic
+                img(src="/images/icons/profile.png", alt="team-member-photo")
+              .h4 #{members.member1.name}
+              p.bg-secondary.text-white.p-2.rounded #{members.member1.role}
+              .small.team-details #{members.member1.details}
+            .col.team-profile
+              .team-pic
+                img(src="/images/icons/profile.png", alt="team-member-photo")
+              .h4 #{members.member2.name}
+              p.bg-secondary.text-white.p-2.rounded #{members.member2.role}
+              .small.team-details #{members.member2.details}
+            .col.team-profile
+              .team-pic
+                img(src="/images/icons/profile.png", alt="team-member-photo")
+              .h4 #{members.member3.name}
+              p.bg-secondary.text-white.p-2.rounded #{members.member3.role}
+              .small.team-details #{members.member3.details}

@@ -40,12 +40,22 @@
     }
   },
   "team": {
-    "title": "Covid-19 Testing | Team"
+    "title": "Covid-19 Testing | Team",
+    "bannerTitle": "Meet The Team",
+    "bannerSubtitle": "...more information about the guys behind this project",
+    "members": {
+      "member1": { "name": "Israel", "role": "UI/UX Designer", "details": "" },
+      "member2": {
+        "name": "Owusu",
+        "role": "Full Stack Developer",
+        "details": "Responsible for translating wireframes into fully functional web application."
+      },
+      "member3": { "name": "Elwyn", "role": "QA & Testing", "details": "" }
+    }
   },
   "news": {
-    "title": "Covid-19 Testing | News"
-  },
-  "error": {
-    "title": "Covid-19 Testing | 404"
+    "title": "Covid-19 Testing | News",
+    "bannerTitle": "Latest",
+    "bannerSubtitle": "News updates on COVID 19 pandemic"
   }
 }

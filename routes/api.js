@@ -16,7 +16,6 @@ router.post("/", async function (req, res, next) {
 
   // process bookings form by sending email confirmation to user
   if (req.query.formId === "book") {
-    console.log(req.body);
     setTimeout(() => {
       sendEmail({
         email: req.body.bookingsEmail,
