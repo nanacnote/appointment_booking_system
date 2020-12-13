@@ -69,6 +69,9 @@ select {
   background-position: center;
   background-size: cover;
 }
+#home > div {
+  max-width: 1150px;
+}
 
 .nav-drawer-wrapper {
   display: none;
@@ -327,4 +330,18 @@ select {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+}
+#news > div {
+  max-width: 1250px;
+}
+.featured-banner-text {
+  border-radius: 10px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  background-color: var(--complementary-color-light);
+  color: var(--light-text);
+}
+
+.card-img-overlay {
+  background-color: var(--complementary-color-light);
 }

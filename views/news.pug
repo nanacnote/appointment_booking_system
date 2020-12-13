@@ -8,67 +8,42 @@ block content
         .px-2.align-self-start
           p.banner-subtitle #{bannerSubtitle}
         .container-fluid
-          .row.mb-5
+          .row.mb-3
             .col-12.nopadding
-              .card.text-center
-                .card-header
-                  | Featured
-                .card-body
-                  h5.card-title Special title treatment
-                  p.card-text With supporting text below as a natural lead-in to additional content.
-                  a.btn.btn-primary(href='#') Go somewhere
-                .card-footer.text-muted
-                  | 2 days ago
+              .card.border-dark
+                img.card-img(src=`${newsFeed.featured.imageUri}` alt=`${newsFeed.featured.imageAlt}`)
+                .card-img-overlay.d-flex.flex-column.justify-content-end
+                  .h2.card-title.featured-banner-text #{newsFeed.featured.title}
+                  u.text-right
+                    a.text-primary.small(href=`${newsFeed.featured.sourceUri}`) #{newsFeed.featured.action}
           .row
             .card-columns
-              .card
-                img.card-img-top(src='...' alt='Card image cap')
-                .card-body
-                  h5.card-title Card title that wraps to a new line
-                  p.card-text
-                    | This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-              .card.p-3
-                blockquote.blockquote.mb-0.card-body
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                  footer.blockquote-footer
-                    small.text-muted
-                      | Someone famous in 
-                      cite(title='Source Title') Source Title
-              .card
-                img.card-img-top(src='...' alt='Card image cap')
-                .card-body
-                  h5.card-title Card title
-                  p.card-text This card has supporting text below as a natural lead-in to additional content.
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
-              .card.bg-primary.text-white.text-center.p-3
-                blockquote.blockquote.mb-0
-                  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.
-                  footer.blockquote-footer
-                    small
-                      | Someone famous in 
-                      cite(title='Source Title') Source Title
-              .card.text-center
-                .card-body
-                  h5.card-title Card title
-                  p.card-text This card has supporting text below as a natural lead-in to additional content.
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
-              .card
-                img.card-img(src='...' alt='Card image')
-              .card.p-3.text-right
-                blockquote.blockquote.mb-0
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                  footer.blockquote-footer
-                    small.text-muted
-                      | Someone famous in 
-                      cite(title='Source Title') Source Title
-              .card
-                .card-body
-                  h5.card-title Card title
-                  p.card-text
-                    | This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
-                  p.card-text
-                    small.text-muted Last updated 3 mins ago
+              each val, key in newsFeed
+                
+                if val.category === "overlay"
+                  .card.border-dark.text-white
+                    img.card-img(src=`${val.imageUri}` alt=`${val.imageAlt}`)
+                    .card-img-overlay
+                      h5.card-title #{val.title}
+                      u
+                        a.text-primary.small(href=`${val.sourceUri}`) #{val.action}
+                
+                if val.category === "article"
+                  .card.border-dark
+                    img.card-img-top(src=`${val.imageUri}` alt=`${val.imageAlt}`)
+                    .card-body
+                      h5.card-title #{val.title}
+                      p.card-text.text-secondary #{val.content}
+                      u
+                        .text-right
+                          a.text-primary.small(href=`${val.sourceUri}`) #{val.action}
+                
+                if val.category === "snapshot"
+                  .card.p-3.border-dark
+                    blockquote.blockquote.mb-0
+                      p #{val.content}
+                      footer.text-right.blockquote-footer
+                        small.text-muted
+                          | #{val.author} 
+                          cite(title=`${val.content}`) #{val.source}
+

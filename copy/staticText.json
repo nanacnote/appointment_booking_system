@@ -44,13 +44,30 @@
     "bannerTitle": "Meet The Team",
     "bannerSubtitle": "...more information about the guys behind this project",
     "members": {
-      "member1": { "name": "Israel", "role": "UI/UX Designer", "details": "" },
+      "member1": {
+        "name": "Israel",
+        "role": "UI/UX Designer",
+        "details": [
+          "Lead the design approach by adopting best practices with accessibilty as a backdrop"
+        ]
+      },
       "member2": {
         "name": "Owusu",
         "role": "Full Stack Developer",
-        "details": "Responsible for translating wireframes into fully functional web application."
+        "details": [
+          "Responsible for translating wireframes into fully functional web application.",
+          "Using Express.Js I set up a backend server which serves static HTML files on the 'home', 'team' and 'news' routes.",
+          "I then adopted CSS and Boostrap to style the front end of the application",
+          "All of this was then brought together to be dynamic and interactive using Vanilla JS and jQuery."
+        ]
       },
-      "member3": { "name": "Elwyn", "role": "QA & Testing", "details": "" }
+      "member3": {
+        "name": "Elwyn",
+        "role": "QA & Testing",
+        "details": [
+          "Coordinated with the developer and designer to ensure the application met usability and design standards."
+        ]
+      }
     }
   },
   "news": {

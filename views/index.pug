@@ -3,7 +3,7 @@ extends layout
 
 block content
   #home
-    .container-fluid.w-75.h-100
+    .container-fluid
       .row.h-75.px-2
         .col-12.col-lg-7.d-flex.align-items-center.nopadding.banner-section
           .d-flex.flex-column
@@ -28,7 +28,7 @@ block content
         .col-12.col-lg-5.nopadding
           //- registration form
           .d-none.position-relative.justify-content-center.align-items-center.rounded.register-form.form-wrapper
-            form.m-4.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
+            form.m-4.p-2.w-100.register-form-data(name="register", method="post" onsubmit="submitForm(event,'register')")
               .h3.text-center.mb-4 #{features.feature2.title}
               #register-form-carousel.carousel.slide
                 .carousel-inner
@@ -89,8 +89,8 @@ block content
           
           //- bookings form 
           .d-none.position-relative.justify-content-center.align-items-center.rounded.book-form.form-wrapper
-            .d-block
-              form.m-4.login-form-data(name="login", method="post" onsubmit="loginTrigger(event)")
+            .d-block.m-4.p-2.w-100
+              form.login-form-data(name="login", method="post" onsubmit="loginTrigger(event)")
                 .h3.text-center.mb-4 #{features.feature3.title}
                 .input-field.mb-4
                   input.w-100(type="email" name="email" placeholder="E-mail" )
@@ -101,7 +101,7 @@ block content
                 .fixed-alert
                   .small.text-danger.my-2.login-error-feedback
                     
-            .d-none.m-4
+            .d-none.m-4.p-2.w-100
               .h3.text-center.mb-4 #{features.feature1.title}
               .d-flex.flex-column.shadow-lg.rounded.overflow-hidden.calendar-wrapper
                 .h-25.p-4.text-right.bg-primary 
@@ -142,8 +142,10 @@ block content
                 .d-none.flex-column.align-items-center.text-center.form-success-error(class=`${val.id}-form-success`)
                   .w-25.mb-4!= fs.readFileSync("./public/images/icons/success.svg")
                   .h4.pb-3
-                    span.pr-2 #{prompts[`${val.id}SuccessAcknowledgment`]}
-                    span.small.success-feedback-data
+                    span #{prompts[`${val.id}SuccessAcknowledgment`]}
+                    if val.id === 'book'
+                      .h5 Email confirmation sent
+                    .small.text-white.bg-success.rounded.py-4.success-feedback-data
                   .text-white #{prompts[`${val.id}SuccessInfo1`]} 
                   .my-4
                     small #{prompts[`${val.id}SuccessInfo2`]}

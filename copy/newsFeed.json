@@ -1,0 +1,61 @@
+{
+  "newsFeed": {
+    "featured": {
+      "title": "UK coronavirus deaths jump by 519 in biggest Saturday rise in 7 months with 21,502 new cases",
+      "imageUri": "/images/news/news-6.png",
+      "imageAlt": "featured-news-photo",
+      "sourceUri": "https://www.thesun.co.uk/news/uknews/13457722/coronavirus-cases-deaths-uk-rise/",
+      "action": "Read more"
+    },
+    "item1": {
+      "category": "overlay",
+      "imageUri": "/images/news/news-2.png",
+      "imageAlt": "news-photo",
+      "title": "Trials to test combination of Oxford and Sputnik vaccines",
+      "sourceUri": "https://www.bbc.co.uk/news/health-55273907",
+      "action": "Read more"
+    },
+    "item2": {
+      "category": "article",
+      "imageUri": "/images/news/news-1.png",
+      "imageAlt": "news-photo",
+      "title": "Good news for Tier 3 Greater Manchester",
+      "content": "For the first time since May, the Greater Manchester's COVID-19 infection rate has dropped below the national average...",
+      "sourceUri": "https://news.sky.com/story/covid-news-live-uk-updates-nhs-chiefs-warn-of-third-wave-amid-concern-over-christmas-relaxation-12153928",
+      "action": "Read more"
+    },
+
+    "item3": {
+      "category": "article",
+      "imageUri": "/images/news/news-3.png",
+      "imageAlt": "news-photo",
+      "title": "FDA approves Pfizer vaccine for emergency use in US",
+      "content": "The US Food and Drug Administration has authorised the Pfizer-BioNTech coronavirus vaccine for emergency use...",
+      "sourceUri": "https://www.bbc.co.uk/news/world-us-canada-55265477",
+      "action": "Read more"
+    },
+    "item4": {
+      "category": "overlay",
+      "imageUri": "/images/news/news-4.png",
+      "imageAlt": "news-photo",
+      "title": "Genes hold clues to why some people get severely ill",
+      "sourceUri": "https://www.bbc.co.uk/news/health-54832563",
+      "action": "Read more"
+    },
+    "item5": {
+      "category": "snapshot",
+      "content": "PM announces 'rule of six' for England with £3,200 fines - and says new rules 'break my heart'",
+      "author": "Boris Johnson",
+      "source": "Sky News"
+    },
+    "item6": {
+      "category": "article",
+      "imageUri": "/images/news/news-5.png",
+      "imageAlt": "news-photo",
+      "title": "Pandemic 'fuelling numbers of children out of school'",
+      "content": "The coronavirus pandemic could be fuelling an increase in the number of children moving out of full-time schooling, town hall bosses warn...",
+      "sourceUri": "https://www.bbc.co.uk/news/education-54908149",
+      "action": "Read more"
+    }
+  }
+}
