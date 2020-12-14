@@ -107,7 +107,7 @@ While inside the `appointment_booking_system` directory run the following comman
   - 2. The title and content of the email sent to a user upon confirming a booking can be set in `emailText.json`
   - 3. News items can be added to the news page inside `newsFeed.json` under three different categories.
   - 4. All the static text on the website are set inside the `staticText.json`what this means is the web site can be easily adopted to serve as an appointment bookings system for a different service.
-  - 5. Since implementing a database is outside the scope of this project, there is a `userDetails.txt`file which stores user information directly on the file system as a serialized json string.
+  - 5. Since implementing a database is outside the scope of this project, there is a `userDetails.txt` file which stores user information directly on the file system as a serialized json string.
 
 - **pubic**
 
@@ -115,7 +115,7 @@ While inside the `appointment_booking_system` directory run the following comman
 
 - **routes**
 
-  Inside this folder there is the Express routing logic logic for all accepted routes ie:
+  Inside this folder there is the Express routing logic for all accepted routes ie:
 
   - 1. `/api` accepting **post** request from forms.
   - 2. `/index` accepting **html** request to home page from browsers.
@@ -124,10 +124,10 @@ While inside the `appointment_booking_system` directory run the following comman
 
 - **utils**
 
-  The utils folder holds all the helper modules for running back tasks. These logics are abstracted from the front end to the back end for security and efficiency reasons. The modules include but not limited to reading and writing to simulated text database file, authenticating users and sending emails.
+  The utils folder holds all the helper modules for running back end tasks. These operations are abstracted from the front end to the back end for security and efficiency reasons. The modules include but not limited to reading and writing to simulated text database file, authenticating users and sending emails.
 
 - **views**
 
-  Since Pug templating engine is in use in this project all the render HTML is stored in the folder as `*.pug`files and served by expressJS.
+  Since Pug templating engine is in use in this project all the rendered HTML is stored in this folder as `*.pug` files and served by expressJS.
 
   If a non existing route is called this is caught by a middleware inside `./app.js` and an `/error` html response is served with a 404 error screen.
