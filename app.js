@@ -11,15 +11,6 @@ var teamRouter = require("./routes/team");
 var newsRouter = require("./routes/news");
 var apiRouter = require("./routes/api");
 
-// livereload server
-var lrServer = livereload.createServer();
-lrServer.watch(__dirname + "/public");
-lrServer.server.once("connection", function () {
-  setTimeout(() => {
-    lrServer.refresh("/");
-  }, 100);
-});
-
 var app = express();
 
 //environment setup
@@ -29,8 +20,18 @@ app.set("env", process.env.NODE_ENV);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-// setup connectLivereload for dev env
-app.get("env") === "development" && app.use(connectLivereload());
+if (app.get("env") === "development") {
+  // livereload server
+  var lrServer = livereload.createServer();
+  lrServer.watch(__dirname + "/public");
+  lrServer.server.once("connection", function () {
+    setTimeout(() => {
+      lrServer.refresh("/");
+    }, 100);
+  });
+  // connectLivereload setup
+  app.use(connectLivereload());
+}
 
 app.use(logger("dev"));
 app.use(express.json());
