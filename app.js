@@ -22,11 +22,16 @@ lrServer.server.once("connection", function () {
 
 var app = express();
 
+//environment setup
+app.set("env", process.env.NODE_ENV);
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-app.use(connectLivereload());
+// setup connectLivereload for dev env
+app.get("env") === "development" && app.use(connectLivereload());
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
